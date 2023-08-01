@@ -1,23 +1,10 @@
-import { Card, CardContent, Typography } from '@mui/material';
-import logo from '../assets/images/cybellum-logo-vertical-black.svg';
-import Styled from './app.styled';
+import { routes } from 'app/routes';
+import React from 'react';
+import { useRoutes } from 'react-router';
 
 function App() {
-  return (
-    <Styled.Box>
-      <Card sx={{ maxWidth: 345, textAlign: 'center' }}>
-        <CardContent>
-          <Styled.CardMedia component="img" alt="Cybellum" image={logo} />
-          <Typography gutterBottom variant="h5" component="div" sx={{ mt: 4 }}>
-            Cybellum Exercise
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Please read README.md and follow the instructions there
-          </Typography>
-        </CardContent>
-      </Card>
-    </Styled.Box>
-  );
+  const content = useRoutes(routes);
+  return <React.Fragment>{content}</React.Fragment>;
 }
 
 export default App;
