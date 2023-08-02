@@ -1,4 +1,3 @@
-import { red } from '@mui/material/colors';
 import { createTheme } from '@mui/material/styles';
 
 // A custom theme for this app
@@ -22,19 +21,61 @@ const theme = createTheme({
         },
       },
     },
+    MuiTextField: {
+      defaultProps: {
+        fullWidth: true,
+        InputLabelProps: {
+          shrink: true,
+        },
+      },
+      styleOverrides: {
+        root: {
+          legend: {
+            span: {
+              display: 'none',
+            },
+          },
+        },
+      },
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          '& > .MuiInputLabel-root': {
+            position: 'unset',
+            transform: 'unset',
+          },
+          '& fieldset': {
+            top: 0,
+          },
+          '& label + div fieldset': {
+            top: -5,
+          },
+        },
+      },
+    },
+    MuiButton: {
+      defaultProps: {},
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          minWidth: 'unset',
+        },
+      },
+    },
   },
   palette: {
     primary: {
-      main: '#556cd6',
+      main: '#556cd6', // Redefine
     },
     secondary: {
-      main: '#19857b',
+      main: '#19857b', // Redefine
     },
     error: {
-      main: red.A400,
+      main: '#ff0000', // Redefine
     },
     background: {
-      default: '#f8f8f8',
+      default: '#e0e0e0', // Redefine
     },
   },
 });
