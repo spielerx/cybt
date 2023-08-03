@@ -34,7 +34,7 @@ const theme = createTheme({
         },
       },
       styleOverrides: {
-        root: ({ theme }) => ({
+        root: {
           legend: {
             span: {
               display: 'none',
@@ -45,21 +45,26 @@ const theme = createTheme({
             lineHeight: '1.25rem',
             letterSpacing: '0.01563rem',
             padding: '0 1rem',
-
-            '&.Mui-focused': {
-              color: theme.palette.primary.light,
-            },
           },
-
+          '.MuiInputBase-root': {
+            paddingRight: '1rem',
+          },
+          'p.Mui-error': {
+            margin: '3px 0',
+            letterSpacing: '0.03rem',
+          },
+          '& + .MuiFormControl-root p.Mui-error': {
+            marginBottom: '9px',
+          },
           '.Mui-focused fieldset.MuiOutlinedInput-notchedOutline': {
             borderWidth: 1,
-            borderColor: theme.palette.primary.light,
           },
-
           input: {
             height: '0.9375em',
+            padding: '16.5px 17px',
+            letterSpacing: '0.03rem',
           },
-        }),
+        },
       },
     },
     MuiFormControl: {
@@ -95,7 +100,6 @@ const theme = createTheme({
             }),
           ...(ownerState.variant === 'contained' && {
             '&:hover': {
-              backgroundColor: theme.palette.primary.main,
               boxShadow: '0px 1px 3px 1px rgba(28, 27, 31, 0.15), 0px 1px 2px 0px rgba(28, 27, 31, 0.30)',
             },
           }),
@@ -121,15 +125,15 @@ const theme = createTheme({
       secondary: '#4D4D4D',
     },
     primary: {
-      light: '#46416D',
-      main: '#BAA182',
+      main: '#46416D',
       contrastText: '#2A2118',
     },
     secondary: {
-      main: '#19857b', // Redefine
+      main: '#BAA182',
+      dark: '#BAA182',
     },
     error: {
-      main: '#ff0000', // Redefine
+      main: '#BA1A1A',
     },
     background: {
       default: '#F9F9FA',

@@ -1,7 +1,7 @@
 import { Box, Button, CardMedia, Container, Grid, Stack, Typography } from '@mui/material';
 import cybellumSign from 'assets/images/login/cybellum-sign.svg';
 import monitor from 'assets/images/login/imac-dig-twins.png';
-import LoginForm from 'components/login/LoginForm';
+import LoginForm, { LoginInput } from 'components/login/LoginForm';
 
 const bottomLinks = {
   'Privacy policy': '/privacy-policy',
@@ -10,6 +10,10 @@ const bottomLinks = {
 };
 
 export default function Login() {
+  const handleSubmit = async (values: LoginInput) => {
+    console.log(values);
+  };
+
   return (
     <Container maxWidth="xl">
       <Box sx={{ minHeight: 'calc(100vh - 75px)', pt: 5, pb: 7 }} display="flex" alignItems="center">
@@ -22,7 +26,7 @@ export default function Login() {
             </Typography>
 
             <Box sx={{ my: 4.5, maxWidth: '25rem' }}>
-              <LoginForm />
+              <LoginForm onSubmit={handleSubmit} />
             </Box>
           </Grid>
           <Grid item xs={6} sx={{ display: { xs: 'none', md: 'block' } }}>
