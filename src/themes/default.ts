@@ -46,7 +46,7 @@ const theme = createTheme({
             letterSpacing: '0.01563rem',
             padding: '0 1rem',
           },
-          '.MuiInputBase-root': {
+          '.MuiInputBase-root.MuiInputBase-adornedEnd': {
             paddingRight: '1rem',
           },
           'p.Mui-error': {

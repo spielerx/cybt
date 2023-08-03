@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthResponseType } from 'api/auth/auth.interface';
 
+import { RootState } from 'app/store';
 import { UserState } from './user.interface';
 
 export const userSlice = createSlice({
@@ -14,6 +15,8 @@ export const userSlice = createSlice({
   },
 });
 
-export default userSlice.reducer;
-
 export const { setUser } = userSlice.actions;
+export const selectCurrentUser = (state: RootState) => state.user.user;
+export const selectIsAuthenticated = (state: RootState) => !!state.user.user;
+
+export default userSlice.reducer;

@@ -42,14 +42,16 @@ export default function Login() {
             </Box>
           </Grid>
           <Grid item xs={6} sx={{ display: { xs: 'none', md: 'block' } }}>
-            <CardMedia component="img" alt="Digital Twins" image={monitor} sx={{ width: '48vw', mb: { xl: -21 } }} />
+            <CardMedia component="img" alt="Digital Twins" image={monitor} sx={{ width: '48vw', mb: { xl: -21 }, userSelect: 'none' }} />
           </Grid>
         </Grid>
       </Box>
 
       <Stack direction="row" spacing={6.5}>
-        {Object.keys(bottomLinks).map((link) => (
-          <Button key={link}>{link}</Button>
+        {Object.entries(bottomLinks).map(([title, link]) => (
+          <Button href={link} key={link}>
+            {title}
+          </Button>
         ))}
       </Stack>
     </Container>
