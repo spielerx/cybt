@@ -1,7 +1,11 @@
 import { Box, Button, CardMedia, Container, Grid, Stack, Typography } from '@mui/material';
+import { useLoginMutation } from 'api/auth/auth';
+import { useAppDispatch } from 'app/store';
 import cybellumSign from 'assets/images/login/cybellum-sign.svg';
 import monitor from 'assets/images/login/imac-dig-twins.png';
 import LoginForm, { LoginInput } from 'components/login/LoginForm';
+import { useNavigate } from 'react-router-dom';
+import { setUser } from 'slices/user/userSlice';
 
 const bottomLinks = {
   'Privacy policy': '/privacy-policy',
@@ -10,8 +14,16 @@ const bottomLinks = {
 };
 
 export default function Login() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [login, { isLoading, error }] = useLoginMutation();
+
   const handleSubmit = async (values: LoginInput) => {
-    console.log(values);
+    try {
+      const response = await login(values).unwrap();
+      dispatch(setUser(response));
+      navigate('/');
+    } catch {}
   };
 
   return (
@@ -26,7 +38,7 @@ export default function Login() {
             </Typography>
 
             <Box sx={{ my: 4.5, maxWidth: '25rem' }}>
-              <LoginForm onSubmit={handleSubmit} />
+              <LoginForm loading={isLoading} error={error as Error} onSubmit={handleSubmit} />
             </Box>
           </Grid>
           <Grid item xs={6} sx={{ display: { xs: 'none', md: 'block' } }}>

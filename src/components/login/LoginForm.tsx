@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { Box, Button, TextField } from '@mui/material';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
@@ -22,13 +23,16 @@ export default function LoginForm({ loading, error, onSubmit }: LoginFormProps) 
     register,
     formState: { errors },
     handleSubmit,
+    setError,
   } = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),
-    defaultValues: {
-      email: 'alma.lawson@example.com',
-      // password: 'password',
-    },
   });
+
+  useEffect(() => {
+    if (error) {
+      setError('password', { message: 'The email or password you entered don’t match', type: 'manual' });
+    }
+  }, [error, setError]);
 
   return (
     <Box component="form" onSubmit={handleSubmit((values) => onSubmit?.(values))} noValidate>
@@ -62,7 +66,7 @@ export default function LoginForm({ loading, error, onSubmit }: LoginFormProps) 
       />
 
       <Button size="small">Forgot your password?</Button>
-      <Button type="submit" variant="contained" color="secondary" fullWidth sx={{ mt: 5.6, mb: 4, clear: 'both' }}>
+      <Button type="submit" variant="contained" color="secondary" fullWidth sx={{ mt: 5.6, mb: 4, clear: 'both' }} disabled={loading}>
         Log in
       </Button>
     </Box>

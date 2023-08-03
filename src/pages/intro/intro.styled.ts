@@ -14,7 +14,6 @@ const Box = styled(BoxMui)(() => ({
 }));
 
 const CardMedia = styled(CardMediaMui)(({ theme }) => {
-  console.log(theme);
   return {
     objectFit: 'unset',
     width: 160,
