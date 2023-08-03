@@ -46,7 +46,7 @@ const theme = createTheme({
             letterSpacing: '0.01563rem',
             padding: '0 1rem',
           },
-          '.MuiInputBase-root.MuiInputBase-adornedEnd': {
+          '.MuiInputBase-adornedEnd': {
             paddingRight: '1rem',
           },
           'p.Mui-error': {
@@ -61,7 +61,7 @@ const theme = createTheme({
           },
           input: {
             height: '0.9375em',
-            padding: '16.5px 17px',
+            padding: '1.03rem 1.0625rem',
             letterSpacing: '0.03rem',
           },
         },
@@ -104,11 +104,11 @@ const theme = createTheme({
             },
           }),
           ...(ownerState.variant === 'text' && {
-            padding: '2px 8.5px',
+            padding: '0.125rem 0.531rem',
           }),
           ...(ownerState.size === 'small' && {
             fontSize: '0.875rem',
-            padding: '0 4px 2px',
+            padding: '0 0.25rem 0.125rem',
             letterSpacing: '0.0063rem',
           }),
           ...(ownerState.size === 'medium' && {
