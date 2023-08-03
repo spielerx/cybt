@@ -1,1 +1,41 @@
-import { Button, CardMedia, TextField, Typography } from '@mui/material';import Box from '@mui/material/Box';import cybellumSign from 'assets/images/login/cybellum-sign.svg';import monitor from 'assets/images/login/imac-dig-twins.png';export default function Login() {  const bottomLinks = {    'Privacy policy': '/privacy-policy',    'Terms of use': '/terms-of-use',    'Contact us': '/contact-us',  };  return (    <Box sx={{ p: 10 }}>      <CardMedia component="img" alt="Cybellum" image={cybellumSign} sx={{ width: 200 }} />      <Typography variant="h1" sx={{ mt: 4 }}>        Welcome to the Product Security Platform      </Typography>      <TextField label="Username" />      <TextField label="Password" type="password" sx={{ mt: 4 }} />      <Button>Forgot your password?</Button>      <Button variant="contained" fullWidth sx={{ mt: 4, mb: 4, clear: 'both' }}>        Log in      </Button>      {Object.keys(bottomLinks).map((link) => (        <Button key={link}>{link}</Button>      ))}      <CardMedia component="img" alt="Digital Twins" image={monitor} sx={{ mt: 4, width: 300 }} />    </Box>  );}
+import { Box, Button, CardMedia, Container, Grid, Stack, Typography } from '@mui/material';
+import cybellumSign from 'assets/images/login/cybellum-sign.svg';
+import monitor from 'assets/images/login/imac-dig-twins.png';
+import LoginForm from 'components/login/LoginForm';
+
+const bottomLinks = {
+  'Privacy policy': '/privacy-policy',
+  'Terms of use': '/terms-of-use',
+  'Contact us': '/contact-us',
+};
+
+export default function Login() {
+  return (
+    <Container maxWidth="xl">
+      <Box sx={{ minHeight: 'calc(100vh - 75px)', pt: 5, pb: 7 }} display="flex" alignItems="center">
+        <Grid container spacing={0} alignItems="center">
+          <Grid item xs={12} md={6}>
+            <CardMedia component="img" alt="Cybellum" image={cybellumSign} sx={{ width: 151 }} />
+
+            <Typography component="h1" variant="h2" sx={{ mt: 4 }}>
+              Welcome to the <div>Product Security Platform</div>
+            </Typography>
+
+            <Box sx={{ my: 4.5, maxWidth: '25rem' }}>
+              <LoginForm />
+            </Box>
+          </Grid>
+          <Grid item xs={6} sx={{ display: { xs: 'none', md: 'block' } }}>
+            <CardMedia component="img" alt="Digital Twins" image={monitor} sx={{ width: '48vw', mb: { xl: -21 } }} />
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Stack direction="row" spacing={6.5}>
+        {Object.keys(bottomLinks).map((link) => (
+          <Button key={link}>{link}</Button>
+        ))}
+      </Stack>
+    </Container>
+  );
+}

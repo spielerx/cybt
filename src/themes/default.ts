@@ -4,6 +4,11 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   typography: {
     fontFamily: ['"Noto Sans"', '"Ubuntu"', '"Helvetica Neue"', 'sans-serif'].join(','),
+    h2: {
+      fontSize: '3.5rem',
+      lineHeight: '4rem',
+      letterSpacing: '-0.03125rem;',
+    },
   },
   components: {
     MuiCssBaseline: {
@@ -29,13 +34,26 @@ const theme = createTheme({
         },
       },
       styleOverrides: {
-        root: {
+        root: ({ theme }) => ({
           legend: {
             span: {
               display: 'none',
             },
           },
-        },
+          label: {
+            fontSize: '0.875rem',
+            lineHeight: '1.25rem',
+            letterSpacing: '0.01563rem',
+            padding: '0 1rem',
+
+            '&.Mui-focused': {
+              color: theme.palette.primary.light,
+            },
+          },
+          input: {
+            height: '0.9375em',
+          },
+        }),
       },
     },
     MuiFormControl: {
@@ -57,16 +75,42 @@ const theme = createTheme({
     MuiButton: {
       defaultProps: {},
       styleOverrides: {
-        root: {
+        root: ({ ownerState }) => ({
           textTransform: 'none',
           minWidth: 'unset',
-        },
+          boxShadow: 'none',
+          ...(ownerState.variant === 'text' &&
+            ownerState.color === 'primary' && {
+              color: theme.palette.text.secondary,
+              '&:hover': {
+                backgroundColor: 'rgba(77, 77, 77, 0.08)',
+              },
+            }),
+          ...(ownerState.variant === 'text' && {
+            padding: '2px 8.5px',
+          }),
+          ...(ownerState.size === 'small' && {
+            fontSize: '0.875rem',
+            padding: '0 4px 2px',
+            letterSpacing: '0.0063rem',
+          }),
+          ...(ownerState.size === 'medium' && {
+            fontSize: '1rem',
+            letterSpacing: '0.00938rem',
+          }),
+        }),
       },
     },
   },
   palette: {
+    text: {
+      primary: '#1C1B1F',
+      secondary: '#4D4D4D',
+    },
     primary: {
-      main: '#556cd6', // Redefine
+      light: '#46416D',
+      main: '#BAA182',
+      contrastText: '#2A2118',
     },
     secondary: {
       main: '#19857b', // Redefine
@@ -75,7 +119,7 @@ const theme = createTheme({
       main: '#ff0000', // Redefine
     },
     background: {
-      default: '#e0e0e0', // Redefine
+      default: '#F9F9FA',
     },
   },
 });
