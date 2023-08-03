@@ -50,6 +50,12 @@ const theme = createTheme({
               color: theme.palette.primary.light,
             },
           },
+
+          '.Mui-focused fieldset.MuiOutlinedInput-notchedOutline': {
+            borderWidth: 1,
+            borderColor: theme.palette.primary.light,
+          },
+
           input: {
             height: '0.9375em',
           },
@@ -79,6 +85,7 @@ const theme = createTheme({
           textTransform: 'none',
           minWidth: 'unset',
           boxShadow: 'none',
+          borderRadius: '0.25rem',
           ...(ownerState.variant === 'text' &&
             ownerState.color === 'primary' && {
               color: theme.palette.text.secondary,
@@ -86,6 +93,12 @@ const theme = createTheme({
                 backgroundColor: 'rgba(77, 77, 77, 0.08)',
               },
             }),
+          ...(ownerState.variant === 'contained' && {
+            '&:hover': {
+              backgroundColor: theme.palette.primary.main,
+              boxShadow: '0px 1px 3px 1px rgba(28, 27, 31, 0.15), 0px 1px 2px 0px rgba(28, 27, 31, 0.30)',
+            },
+          }),
           ...(ownerState.variant === 'text' && {
             padding: '2px 8.5px',
           }),
