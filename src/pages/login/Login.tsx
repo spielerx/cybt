@@ -1,4 +1,5 @@
-import { Box, Button, CardMedia, Container, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, CardMedia, Container, Stack, Typography } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 import { useLoginMutation } from 'api/auth/auth';
 import { useAppDispatch } from 'app/store';
 import cybellumSign from 'assets/images/login/cybellum-sign.svg';
@@ -27,10 +28,10 @@ export default function Login() {
   };
 
   return (
-    <Container maxWidth="xl">
-      <Box sx={{ minHeight: 'calc(100vh - 75px)', pt: 5, pb: 7 }} display="flex" alignItems="center">
+    <Container maxWidth="xl" sx={{ display: { xs: 'flex', md: 'block' }, alignItems: 'center', flexDirection: 'column' }}>
+      <Box minHeight="calc(100vh - 75px)" pt={5} pb={7} display="flex" alignItems="center">
         <Grid container spacing={0} alignItems="center">
-          <Grid item xs={12} md={6}>
+          <Grid xs={12} sm={10} smOffset={1} md={6} mdOffset={0}>
             <CardMedia component="img" alt="Cybellum" image={cybellumSign} sx={{ width: 151 }} />
 
             <Typography component="h1" variant="h2" sx={{ mt: 4 }}>
@@ -41,13 +42,13 @@ export default function Login() {
               <LoginForm loading={isLoading} error={error as Error} onSubmit={handleSubmit} />
             </Box>
           </Grid>
-          <Grid item xs={6} sx={{ display: { xs: 'none', md: 'block' } }}>
+          <Grid md={6} sx={{ display: { xs: 'none', md: 'block' } }}>
             <CardMedia component="img" alt="Digital Twins" image={monitor} sx={{ width: '48vw', mb: { xl: -21 }, userSelect: 'none' }} />
           </Grid>
         </Grid>
       </Box>
 
-      <Stack direction="row" spacing={6.5}>
+      <Stack direction="row" flexWrap="wrap" spacing={{ xs: 0, sm: 3.5, md: 6.5 }}>
         {Object.entries(bottomLinks).map(([title, link]) => (
           <Button href={link} key={link}>
             {title}

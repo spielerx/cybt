@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 // A custom theme for this app
 const theme = createTheme({
@@ -6,8 +6,8 @@ const theme = createTheme({
     fontFamily: ['"Noto Sans"', '"Ubuntu"', '"Helvetica Neue"', 'sans-serif'].join(','),
     h2: {
       fontSize: '3.5rem',
-      lineHeight: '4rem',
-      letterSpacing: '-0.03125rem;',
+      lineHeight: '1.13',
+      letterSpacing: '-0.052rem',
     },
   },
   components: {
@@ -141,4 +141,4 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+export default responsiveFontSizes(theme);
